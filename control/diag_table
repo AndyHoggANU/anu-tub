@@ -1,0 +1,25 @@
+"Sector mitGCM vert z2"
+1 1 1 0 0 0
+
+"prog",     5, "days",  1,"days","Time",
+"prog_ave", 30, "days",  1,"days","Time",
+"turb",     5, "days",  1,"days","Time",
+
+# Instantaneous diagnostics
+"ocean_model","u",   "u",   "prog","all",.false.,"none",2
+"ocean_model","v",   "v",   "prog","all",.false.,"none",2
+"ocean_model","temp","temp","prog","all",.false.,"none",2
+
+# Potential density diagnostics
+"ocean_model","vh_rho","vh_rho","prog_ave","all",.true.,"none",2
+"ocean_model","h_rho", "h_rho", "prog_ave","all",.true.,"none",2
+
+# Averaged depth-space diagonstics (for calculating overturning)
+"ocean_model","temp","temp","prog_ave","all",.true.,"none",2
+"ocean_model","vh",  "vh",  "prog_ave","all",.true.,"none",2
+
+# Diffusivity diagnostics
+"ocean_model","Kd_user",     "Kd_user",     "turb","all",.false.,"none",2
+"ocean_model","Kd_interface","Kd_interface","turb","all",.false.,"none",2
+
+

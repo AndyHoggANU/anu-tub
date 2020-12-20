@@ -1,0 +1,4 @@
+!DEBUG = True
+!VERBOSITY = 6
+!SPLIT = False
+!WRITE_GEOM = 0
