@@ -15,4 +15,4 @@ The configuration includes the following features:
 * The MEKE eddy parameterisation scheme is turned off, as is the mixed layer restratification scheme.
 
 The model has $160 \times 800$ grid points, with a tile layout of $6 \times 40$ to run efficiently on 240 cores.
-With a 900-second timestep, the standard ZSTAR case takes ~2 hours per year (12 years/day) and consumes ~500 SU per model year.
+With a 900-second timestep, the standard ZSTAR case takes ~2 hours per year (12 years/day) and consumes ~1000 SU per model year.
