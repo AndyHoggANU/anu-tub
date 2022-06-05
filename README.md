@@ -7,7 +7,7 @@ The configuration includes the following features:
 * It has a 1/4° nominal resolution and a Mercator grid refinement.
 * the default vertical coordinate is ZSTAR with 75 vertical levels.
 * The bathymetry is simple, with a vertical wall to the north, an "Antarctic shelf and slope" in the south and sloping sidewalls on the east and west.
-* The domain is periodic in the east-west direction, allowing zonal flow in a narrow "Drake Passage" between ~65°D and ~52°S.
+* The domain is periodic in the east-west direction, allowing zonal flow in a narrow "Drake Passage" between ~65°S and ~52°S.
 * Surface momentum forcing is via a prescribed zonal wind field that is constant, but varies with latitude.
 * Thermal forcing is through relation to a latitude-dependent SST profile, and there is (currently) no freshwater forcing so that salinity is constant. 
 * We use the WRIGHT equation of state, without frazil formation or sea ice.
