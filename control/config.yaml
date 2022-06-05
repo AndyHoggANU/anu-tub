@@ -1,21 +1,21 @@
 ncpus: 240
-walltime: 1:45:00
-jobname: anu-tub
-project: x77
+walltime: 06:00:00
+jobname: tub-new
+project: g40
 queue: normal
 
 model: mom6
 shortpath: /scratch/x77
-exe: /scratch/x77/ahg157/mom6/bin/MOM6
+exe: /g/data/x77/ahg157/exes/MOM6/AG_FMS1-f005486
 input: /g/data/x77/amh157/mom6/input/anu-tub
+
+storage:
+  gdata:
+    - x77
 
 collate: False
 
 mpi:
-    module: openmpi/4.0.1
-    
-qsub_flags: -W umask=027
+    module: openmpi/4.1.2
 
-# DANGER! Do not uncomment this without checking the script is synching
-# to the correct location!
-postscript: sync_output_to_gdata.sh
+qsub_flags: -W umask=027

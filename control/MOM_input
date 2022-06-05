@@ -16,13 +16,13 @@ USE_REGRIDDING = True           !   [Boolean] default = False
 THICKNESSDIFFUSE = False         !   [Boolean] default = False
                                 ! If true, interface heights are diffused with a
                                 ! coefficient of KHTH.
-DT = 1080.0                      !   [s]
+DT = 900.0 			!!!1080.0                      !   [s]
                                 ! The (baroclinic) dynamics time step.  The time-step that
                                 ! is actually used will be an integer fraction of the
                                 ! forcing time-step (DT_FORCING in ocean-only mode or the
                                 ! coupling timestep in coupled mode.)
 !DT_FORCING = 3600.0
-!DT_THERM = 3600.0               !   [s] default = 900.0
+DT_THERM = 3600.0               !   [s] default = 900.0
                                 ! The thermodynamic and tracer advection time step.
                                 ! Ideally DT_THERM should be an integer multiple of DT
                                 ! and less than the forcing or coupling time-step, unless
@@ -84,7 +84,7 @@ NJGLOBAL = 800                  !
                                 ! this is set in MOM_memory.h at compile time.
 
 NIPROC = 6
-NJPROC = 40 
+NJPROC = 40
 
 ! === module MOM_hor_index ===
 ! Sets the horizontal array index types.
@@ -97,7 +97,11 @@ NK = 75                         !   [nondim]
 ! === module MOM_tracer_registry ===
 
 ! === module MOM_EOS ===
-DTFREEZE_DP = -7.75E-08         !   [deg C Pa-1] default = 0.0
+EQN_OF_STATE = "WRIGHT"         ! default = "WRIGHT"
+                                ! EQN_OF_STATE determines which ocean equation of state should be used.
+                                ! Currently, the valid choices are "LINEAR", "UNESCO", "WRIGHT", "NEMO" and
+                                ! "TEOS10". This is only used if USE_EOS is true.
+				DTFREEZE_DP = -7.75E-08         !   [deg C Pa-1] default = 0.0
                                 ! When TFREEZE_FORM=LINEAR,
                                 ! this is the derivative of the freezing potential
                                 ! temperature with pressure.
@@ -106,6 +110,7 @@ DTFREEZE_DP = -7.75E-08         !   [deg C Pa-1] default = 0.0
 PARALLEL_RESTARTFILES = False    !   [Boolean] default = False
                                 ! If true, each processor writes its own restart file,
                                 ! otherwise a single restart file is generated
+RESTART_CHECKSUMS_REQUIRED = False !   [Boolean] default = True
 
 ! === module MOM_tracer_flow_control ===
 USE_IDEAL_AGE_TRACER = True     !   [Boolean] default = False
@@ -180,8 +185,8 @@ COORD_CONFIG = "linear"           !
                                 !       (read from COORD_FILE) to set layer densities.
                                 !     USER - call a user modified routine.
 COORD_FILE = "layer_coord.nc"   !
-LIGHTEST_DENSITY = 1028
-DENSITY_RANGE = 10
+LIGHTEST_DENSITY = 1022
+DENSITY_RANGE = 6
                                 ! The file from which the coordinate densities are read.
 REGRIDDING_COORDINATE_MODE = "ZSTAR" ! default = "LAYER"
                                 ! Coordinate mode for vertical regridding.
@@ -504,7 +509,7 @@ MLE_MLD_DECAY_TIME = 2.592E+06  !   [s] default = 0.0
 
 ! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.
-ENERGETICS_SFC_PBL = False       !   [Boolean] default = False
+ENERGETICS_SFC_PBL = True       !   [Boolean] default = False
                                 ! If true, use an implied energetics planetary boundary
                                 ! layer scheme to determine the diffusivity and viscosity
                                 ! in the surface boundary layer.
@@ -517,20 +522,6 @@ EPBL_IS_ADDITIVE = False        !   [Boolean] default = True
 ! This is the MOM wrapper to CVmix:KPP
 ! See http://code.google.com/p/cvmix/
 
-! === module MOM_diffConvection ===
-! This module implements enhanced diffusivity as a
-! function of static stability, N^2.
-CONVECTION%
-%CONVECTION
-
-! === module MOM_CVMix_conv ===
-! Parameterization of enhanced mixing due to convection via CVMix
-USE_CVMix_CONVECTION = True    !   [Boolean] default = False
-                                ! If true, turns on the enhanced mixing due to convection via CVMix. This scheme
-                                ! increases diapycnal diffs./viscs. at statically unstable interfaces. Relevant
-                                ! parameters are contained in the CVMix_CONVECTION% parameter block.
-
-! === module MOM_entrain_diffusive ===
 
 ! === module MOM_set_diffusivity ===
 BBL_MIXING_AS_MAX = False       !   [Boolean] default = True
@@ -563,7 +554,7 @@ KD_MAX = 0.1                    !   [m2 s-1] default = -1.0
                                 ! The maximum permitted increment for the diapycnal
                                 ! diffusivity from TKE-based parameterizations, or a
                                 ! negative value for no limit.
-USER_CHANGE_DIFFUSIVITY = True  !   [Boolean] default = False
+USER_CHANGE_DIFFUSIVITY = False  !   [Boolean] default = False
                                 ! If true, call user-defined code to change the diffusivity.
 INT_TIDE_DISSIPATION = False     !   [Boolean] default = False
                                 ! If true, use an internal tidal dissipation scheme to
@@ -571,9 +562,9 @@ INT_TIDE_DISSIPATION = False     !   [Boolean] default = False
                                 ! et al. (2002) and Simmons et al. (2004).
 
 ! === module user_set_diffusivity ===
-USER_KD_ADD = 0.01               !   [m2 s-1] default = 0.0
-                                ! A user-specified additional diffusivity over a range of latitude and density.
-USER_KD_ADD_Z_RANGE = -300.0, -150.0, 10.0, 11.0  !   [m] default = -1.0E+09
+!USER_KD_ADD = 0.01               !   [m2 s-1] default = 0.0
+!                                ! A user-specified additional diffusivity over a range of latitude and density.
+!USER_KD_ADD_Z_RANGE = -300.0, -150.0, 10.0, 11.0  !   [m] default = -1.0E+09
                                 ! Four successive values that define a range of Z levels over which the
                                 ! user-given extra diffusivity is applied.  The four values specify the height
                                 ! at which the extra diffusivity starts to increase from 0, hits its full value,
@@ -581,7 +572,7 @@ USER_KD_ADD_Z_RANGE = -300.0, -150.0, 10.0, 11.0  !   [m] default = -1.0E+09
 
 ! === module MOM_kappa_shear ===
 ! Parameterization of shear-driven turbulence following Jackson, Hallberg and Legg, JPO 2008
-USE_JACKSON_PARAM = False        !   [Boolean] default = False
+USE_JACKSON_PARAM = True        !   [Boolean] default = False
                                 ! If true, use the Jackson-Hallberg-Legg (JPO 2008)
                                 ! shear mixing parameterization.
 MAX_RINO_IT = 25                !   [nondim] default = 50
@@ -738,9 +729,12 @@ VARIABLE_WINDS = False
 SAVE_INITIAL_CONDS = True
 READ_DEPTH_LIST = True ! read/write depth list for APE calc
 
-NUM_DIAG_COORDS = 1
-DIAG_COORDS = "z Z ZSTAR"
+NUM_DIAG_COORDS = 2
+DIAG_COORDS = "z Z ZSTAR", "rho2 RHO2 RHO"
 DIAG_COORD_DEF_Z = "FNC1:2,4000,4.5,.01"
+DIAG_COORD_DEF_RHO2 = "RFNC1:35,999.5,1028,1028.5,8.,1038.,0.0078125"
 
 REMAP_UV_USING_OLD_ALG = False
 MIN_THICKNESS = 1.0E-6
+
+USE_LEGACY_DIABATIC_DRIVER = False
