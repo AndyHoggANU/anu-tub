@@ -188,7 +188,7 @@ COORD_FILE = "layer_coord.nc"   !
 LIGHTEST_DENSITY = 1022
 DENSITY_RANGE = 6
                                 ! The file from which the coordinate densities are read.
-REGRIDDING_COORDINATE_MODE = "ZSTAR" ! default = "LAYER"
+!REGRIDDING_COORDINATE_MODE = "ZSTAR" ! default = "LAYER"
                                 ! Coordinate mode for vertical regridding.
                                 ! Choose among the following possibilities:
                                 !  LAYER - Isopycnal or stacked shallow water layers
@@ -205,7 +205,7 @@ BOUNDARY_EXTRAPOLATION = True   !   [Boolean] default = False
                                 ! than PCM. E.g., if PPM is used for remapping, a
                                 ! PPM reconstruction will also be used within
                                 ! boundary cells.
-ALE_COORDINATE_CONFIG = "FNC1:2,4000,4.5,.01"
+!ALE_COORDINATE_CONFIG = "FNC1:2,4000,4.5,.01"
                                 ! Determines how to specify the coordinate
                                 ! resolution. Valid options are:
                                 !  PARAM       - use the vector-parameter ALE_RESOLUTION

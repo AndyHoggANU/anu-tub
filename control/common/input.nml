@@ -1,0 +1,34 @@
+&mom_input_nml
+    output_directory = './'
+    input_filename = 'r'
+    restart_input_dir = 'INPUT/'
+    restart_output_dir = 'RESTART/'
+    parameter_filename = 'MOM_input', 'MOM_override'
+/
+
+&fms_nml
+    clock_grain = 'MODULE'
+    clock_flags = 'NONE'
+    domains_stack_size = 1200000
+/
+
+&ocean_domains_nml
+/
+
+&diag_manager_nml
+/
+
+&ocean_solo_nml
+    months = 12
+    days = 0
+    date_init = 1, 1, 1, 0, 0, 0
+    hours = 0
+    minutes = 0
+    seconds = 0
+    calendar = 'NOLEAP'
+/
+
+&mpp_io_nml
+    deflate_level = 5
+    shuffle = 1
+/
