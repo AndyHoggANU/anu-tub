@@ -16,7 +16,7 @@ USE_REGRIDDING = True           !   [Boolean] default = False
 THICKNESSDIFFUSE = False         !   [Boolean] default = False
                                 ! If true, interface heights are diffused with a
                                 ! coefficient of KHTH.
-DT = 900.0 			!!!1080.0                      !   [s]
+DT = 1200.0 	!!900.0		!!!1080.0                      !   [s]
                                 ! The (baroclinic) dynamics time step.  The time-step that
                                 ! is actually used will be an integer fraction of the
                                 ! forcing time-step (DT_FORCING in ocean-only mode or the
