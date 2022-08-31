@@ -1,0 +1,18 @@
+REGRIDDING_COORDINATE_MODE = "ADAPTIVE"
+ALE_COORDINATE_CONFIG = "FNC1:2,4000,4.5,.01"
+
+! timescale on which to apply adaptivity fluxes
+ADAPT_TIMESCALE = 3600.0
+! minimum contribution of smoothing term
+ADAPT_SMOOTH_MIN = 0.1
+! scaling to convective adjustment strength
+ADAPT_ADJUSTMENT_SCALE = 0.1
+
+! restoring timescale
+REGRID_TIME_SCALE = 86400.0
+! above this depth, grid is exactly z*
+REGRID_FILTER_SHALLOW_DEPTH = 50.0
+! below this depth, restoring is at the timescale above --
+! between the two regions there is a cubic profile
+! for the restoring timescale
+REGRID_FILTER_DEEP_DEPTH = 300.0
