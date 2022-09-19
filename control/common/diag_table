@@ -56,6 +56,7 @@
  "ocean_model",   "zos",          "zos",              "ocean_daily",         "all", "mean", "none",2
 
  "ocean_model_z", "thetao",       "thetao",           "ocean_month_z",       "all", "mean", "none",2  # if use pre-TEOS10
+ "ocean_model", "thetao",       "thetao",           "ocean_month",       "all", "mean", "none",2  # if use pre-TEOS10
  "ocean_model",   "tos",          "tos",              "ocean_daily",         "all", "mean", "none",2
  "ocean_model",   "tob",          "tob",              "ocean_month",         "all", "mean", "none",2
 
