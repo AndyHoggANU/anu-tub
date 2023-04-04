@@ -11,10 +11,17 @@ import xarray as xr
 
 iter=200
 dt=3600
-restore_ts = 864000.0
+
+restore_ts = 4320000.0
+timescale = 3600
+smooth_min = 0.1
+slope_cutoff = 0.1
 
 params = toml.load("params_adapt.toml")
 params["ADAPT_RESTORING_TIMESCALE"] = restore_ts  # default is 864000
+params["ADAPT_TIMESCALE"] = timescale  # default is 3600
+params["ADAPT_SMOOTH_MIN"] = smooth_min  # default is 0.1
+params["ADAPT_SLOPE_CUTOFF"] = slope_cutoff  # default is 0.01
 cs = pyale.mom_init_cs(params)
 restart_filename = 'INPUTS/MOM.res.nc' 
 pyale.load_mom_restart(cs, restart_filename)
@@ -37,4 +44,4 @@ temp_depth = xr.DataArray(
     )
 )
 
-temp_depth.to_netcdf('OUTPUTS/vary_restore_ts/temp_restore_ts_'+str(restore_ts)+'.nc')
+temp_depth.to_netcdf('OUTPUTS/vary_slope_cutoff/temp_slope_cutoff_'+str(slope_cutoff)+'.nc')
