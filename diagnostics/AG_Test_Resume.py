@@ -52,19 +52,24 @@ adapt_cs = pyale.mom_init_regrid(cs, params, "ADAPTIVE")
 
 ds2 = xr.open_dataset(restart_filename)
 
+print('1')
 state = pyale.accelerate_ale(cs, adapt_cs, iter=1, dt=3600)
 h_depth = np.cumsum(state[0][39,:,:],1)
 new_temp = xr.DataArray(data=np.transpose(state[1][39,:,:]),dims=["zl", "yh"],
             coords=dict(yh=(["yh"], ds2.lath.values),depth=(["zl", "yh"], np.transpose(h_depth))))    
 tpplot(new_temp,h_depth,vlev=vlev,cmap=cm.cm.thermal)
 plt.title('Iteration '+str(1))
-plt.show()
+plt.savefig('temp/fig1.png')
+#plt.show()
 
 for ii in range(2,10):
-    state = pyale.resume_ale(cs, adapt_cs, state, 1, dt=3600)
+    print(ii)
+    state_old = state
+    state = pyale.resume_ale(cs, adapt_cs, state_old, 1, dt=3600)
     h_depth = np.cumsum(state[0][39,:,:],1)
     new_temp = xr.DataArray(data=np.transpose(state[1][39,:,:]),dims=["zl", "yh"],
                 coords=dict(yh=(["yh"], ds2.lath.values),depth=(["zl", "yh"], np.transpose(h_depth))))    
     tpplot(new_temp,h_depth,vlev=vlev,cmap=cm.cm.thermal)
     plt.title('Iteration '+str(ii))
-    plt.show()
+    plt.savefig('temp/fig'+str(ii)+'.png')
+    #plt.show()
