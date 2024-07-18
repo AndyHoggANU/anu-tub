@@ -7,12 +7,13 @@ ADAPT_TIMESCALE = 3600.0
 ADAPT_SMOOTH_MIN = 0.1
 ! scaling to convective adjustment strength
 ADAPT_ADJUSTMENT_SCALE = 0.1
-
+! setting the slope cutoff -- this is the important one!
+ADAPT_SLOPE_CUTOFF = 0.0035
 ! restoring timescale
 REGRID_TIME_SCALE = 86400.0
 ! above this depth, grid is exactly z*
-REGRID_FILTER_SHALLOW_DEPTH = 50.0
+REGRID_FILTER_SHALLOW_DEPTH = 20.0
 ! below this depth, restoring is at the timescale above --
 ! between the two regions there is a cubic profile
 ! for the restoring timescale
-REGRID_FILTER_DEEP_DEPTH = 300.0
+REGRID_FILTER_DEEP_DEPTH = 100.0

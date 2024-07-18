@@ -60,6 +60,9 @@
  "ocean_model",   "tos",          "tos",              "ocean_daily",         "all", "mean", "none",2
  "ocean_model",   "tob",          "tob",              "ocean_month",         "all", "mean", "none",2
 
+ "ocean_model_z", "rhopot2",       "rhopot2",           "ocean_month_z",       "all", "mean", "none",2  # if use pre-TEOS10
+ "ocean_model", "rhopot2",       "rhopot2",           "ocean_month",       "all", "mean", "none",2  # if use pre-TEOS10
+ 
  "ocean_model_z", "agessc",       "agessc",           "ocean_month_z",      "all", "mean", "none",2
  "ocean_model",   "mlotst",       "mlotst",           "ocean_month",         "all", "mean", "none",2
 

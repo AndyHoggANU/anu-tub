@@ -1,12 +1,12 @@
 ncpus: 240
-walltime: 03:00:00
+walltime: 12:00:00
 jobname: tub-ag
 project: x77
 queue: normal
 
 model: mom6
 shortpath: /scratch/x77
-exe: /g/data/x77/ahg157/exes/MOM6/AG_FMS1-f005486
+exe: /g/data/x77/ahg157/exes/MOM6/AG-774f4402
 input: /g/data/x77/amh157/mom6/input/anu-tub
 
 storage:
@@ -20,5 +20,8 @@ mpi:
 
 qsub_flags: -W umask=027
 
+restart_freq: 1  # use tidy_restarts.py instead
+
 userscripts:
    archive: qsub sync_output_to_gdata.sh
+
